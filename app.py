@@ -3,6 +3,19 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 
+import os
+# FORCE pure-python protobuf implementation at the absolute entry point
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
+
+import streamlit as st
+from dotenv import load_dotenv
+
+# --- The Rest of Your LangChain & Ecosystem Imports Go Here ---
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_groq import ChatGroq
+# ... [Keep the rest of your app.py code exactly the same] ...
+
 # LangChain & Ecosystem Imports
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
