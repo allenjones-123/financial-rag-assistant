@@ -1,5 +1,4 @@
 import time
-import os
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -26,13 +25,18 @@ from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 
 # Load environment variables
 load_dotenv()
-
-if "GROQ_API_KEY" in st.secrets:
-    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+# Safe Secret Routing Layer for both Cloud and Local environments
+try:
+    if "GROQ_API_KEY" in st.secrets:
+        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+except Exception:
+    # If st.secrets throws an error locally because secrets.toml doesn't exist,
+    # we catch it and gracefully fall back to the .env file loaded above.
+    pass
 
 # Ensure API Key is available
 if not os.getenv("GROQ_API_KEY"):
-    st.error("❌ GROQ_API_KEY not found in environment variables. Please check your .env file.")
+    st.error("❌ GROQ_API_KEY not found. Please ensure it is set in your .env file locally or in your cloud secrets.")
     st.stop()
 
 # --- Page Configuration & Styling ---
