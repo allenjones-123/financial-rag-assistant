@@ -14,6 +14,9 @@ from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 # Load environment variables
 load_dotenv()
 
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+
 # Ensure API Key is available
 if not os.getenv("GROQ_API_KEY"):
     st.error("❌ GROQ_API_KEY not found in environment variables. Please check your .env file.")
