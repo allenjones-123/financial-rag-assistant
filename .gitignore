@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+.venv/
+ENV/
+
+# API Keys & Secrets
+.env
+
+# Local Databases & Caches
+chroma_db/
+.chroma/
+__pycache__/
+*.pyc
+
+# Operating System Files
+.DS_Store
+Thumbs.db
